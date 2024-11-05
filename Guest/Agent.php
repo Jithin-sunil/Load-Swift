@@ -10,107 +10,183 @@
 		$temp=$_FILES["fileproof"]["tmp_name"];
 		move_uploaded_file($temp,"../Asset/File/AgentDocs/".$photoo);
 		
-		$inqry="insert into tbl_agent(place_id,agent_name,agent_gender,agent_address,agent_contact,agent_email,agent_password,agent_photo,agent_idproof)values('".$_POST["selplace"]."','".$_POST["txtname"]."','".$_POST["rdngender"]."','".$_POST["txtaddress"]."','".$_POST["txtcontact"]."','".$_POST["txtemail"]."','".$_POST["txtpassword"]."','$photo','$photoo')";
-		mysql_query($inqry);
-		//echo $inqry;
+    $selU=" select * from tbl_user where user_email='".$_POST['txtemail']."'  ";
+    $selS=" select * from tbl_seller where seller_email='".$_POST['txtemail']."'  ";
+    $selA=" select * from tbl_agent where agent_email='".$_POST['txtemail']."'  ";
+    $selL=" select * from tbl_lorrydriver where lorrydriver_email='".$_POST['txtemail']."'  ";
+    $selAd=" select * from tbl_admin where admin_email='".$_POST['txtemail']."'  ";
+
+
+    $resU=mysql_query($selU);
+    $resS=mysql_query($selS);
+    $resA=mysql_query($selA);
+    $resL=mysql_query($selL);
+    $resAd=mysql_query($selAd);
+
+    if(mysql_num_rows($resU)>0 && mysql_num_rows($resS)>0 && mysql_num_rows($resA)>0 && mysql_num_rows($resL)>0 && mysql_num_rows($resAd))
+    {
+      ?>
+      <script>
+        alert("Email Already Exist");
+      </script>
+      <?php
+    }
+    else
+    {
+      $inqry="insert into tbl_agent(place_id,agent_name,agent_gender,agent_address,agent_contact,agent_email,agent_password,agent_photo,agent_idproof)values('".$_POST["selplace"]."','".$_POST["txtname"]."','".$_POST["rdngender"]."','".$_POST["txtaddress"]."','".$_POST["txtcontact"]."','".$_POST["txtemail"]."','".$_POST["txtpassword"]."','$photo','$photoo')";
+      if(mysql_query($inqry))
+      {
+        ?>
+        <script>
+          alert("Registered SuccessFully");
+          window.location="Login.php";
+        </script>
+        <?php
+      }
+    }
+
+		
 	}
 	
 
 	?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>LoadSwift::AgentRegistration</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Registration - Landscape Layout</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        background-image: url('../Asset/Templates/Main/img/image.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: Arial, sans-serif;
+    }
+    .form-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .form-heading {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 24px;
+        color: #333;
+    }
+</style>
 </head>
 
 <body>
-<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
-  <table width="200" border="1" align="center">
-    <tr>
-      <td>State</td>
-      <td><label for="selstate"></label>
-        <select name="selstate" id="selstate" onchange="getDistrict(this.value)">
-        <option value="----select----">----select----</option>
-         <?php
-							$selqry="select * from tbl_state";
-							$data=mysql_query($selqry);
-							while($row=mysql_fetch_array($data))
-								{
-				?>
+<div class="container form-container">
+    <div class="form-heading">Agent Registration</div>
+    <form action="" method="post" enctype="multipart/form-data">
         
-        			<option value="<?php echo $row["state_id"]?>"><?php echo $row["state_name"]?></option>
-                    
-               <?php
-								}
-				?>
-      </select></td>
-    </tr>
-    <tr>
-      <td>District</td>
-      <td><label for="seldistrict"></label>
-        <select name="seldistrict" id="seldistrict" onchange="getPlace(this.value)">
-          
-      </select></td>
-    </tr>
-    <tr>
-      <td>Place</td>
-      <td><label for="selplace"></label>
-        <select name="selplace" id="selplace">
-         
-      </select></td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td><label for="txtname"></label>
-      <input type="text" name="txtname" id="txtname" required placeholder="Enter Name"/></td>
-    </tr>
-    <tr>
-      <td>Gender</td>
-      <td><input type="radio" name="rdngender" id="rdngender" value="Female" />
-      <label for="rdngender">Female
-        <input type="radio" name="rdngender" id="rdngender" value="Male" />
-      Male</label></td>
-    </tr>
-    <tr>
-      <td>Address</td>
-      <td><label for="txtaddress"></label>
-      <textarea name="txtaddress" id="txtaddress" cols="45" rows="5" required placeholder="Enter Address"></textarea></td>
-    </tr>
-    <tr>
-      <td>Contact</td>
-      <td><label for="txtcontact"></label>
-      <input type="text" name="txtcontact" id="txtcontact" required placeholder="Enter Contact"/></td>
-    </tr>
-    <tr>
-      <td>Email ID</td>
-      <td><label for="txtemail"></label>
-      <input type="email" name="txtemail" id="txtemail" required placeholder="Enter EmailID"/></td>
-    </tr>
-    <tr>
-      <td>Password</td>
-      <td><label for="txtpassword"></label>
-      <input type="password" name="txtpassword" id="txtpassword" required placeholder="Enter Password"/></td>
-    </tr>
-    <tr>
-      <td>Photo</td>
-      <td><label for="filephoto"></label>
-      <input type="file" name="filephoto" id="filephoto" required/></td>
-    </tr>
-    <tr>
-      <td>Id Proof</td>
-      <td><label for="fileproof"></label>
-      <input type="file" name="fileproof" id="fileproof" required/></td>
-    </tr>
-    <tr>
-      
-      <td colspan="2" align="center"><input type="submit" name="btnsubmit" id="btnsubmit" value="Submit" />
-      <input type="submit" name="btncancel" id="btncancel" value="Cancel" /></td>
-    </tr>
-  </table>
-</form>
+        <!-- Row 1: Name and Gender -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="txtname" class="form-label">Name</label>
+                <input type="text" class="form-control" name="txtname" id="txtname" required placeholder="Enter Name"/>
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+                <label class="form-label me-3">Gender</label>
+                <div class="form-check me-3">
+                    <input type="radio" class="form-check-input" name="rdngender" id="rdngender1" value="Female" />
+                    <label class="form-check-label" for="rdngender1">Female</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="rdngender" id="rdngender2" value="Male" />
+                    <label class="form-check-label" for="rdngender2">Male</label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Row 2: Contact and Email -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="txtcontact" class="form-label">Contact</label>
+                <input type="text" class="form-control" name="txtcontact" id="txtcontact" required placeholder="Enter Contact"/>
+            </div>
+            <div class="col-md-6">
+                <label for="txtemail" class="form-label">Email ID</label>
+                <input type="email" class="form-control" name="txtemail" id="txtemail" required placeholder="Enter Email ID"/>
+            </div>
+        </div>
+
+        <!-- Row 3: State, District, and Place -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="selstate" class="form-label">State</label>
+                <select class="form-select" name="selstate" id="selstate" onchange="getDistrict(this.value)">
+                    <option value="">---- Select ----</option>
+                    <?php
+                        $selqry="select * from tbl_state";
+                        $data=mysql_query($selqry);
+                        while($row=mysql_fetch_array($data)) {
+                    ?>
+                    <option value="<?php echo $row["state_id"]?>"><?php echo $row["state_name"]?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="seldistrict" class="form-label">District</label>
+                <select class="form-select" name="seldistrict" id="seldistrict" onchange="getPlace(this.value)">
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="selplace" class="form-label">Place</label>
+                <select class="form-select" name="selplace" id="selplace">
+                </select>
+            </div>
+        </div>
+
+        <!-- Row 4: Address and Password -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="txtaddress" class="form-label">Address</label>
+                <textarea class="form-control" name="txtaddress" id="txtaddress" rows="2" required placeholder="Enter Address"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="txtpassword" class="form-label">Password</label>
+                <input type="password" class="form-control" name="txtpassword" id="txtpassword" required placeholder="Enter Password"/>
+            </div>
+        </div>
+
+        <!-- Row 5: Photo and ID Proof -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="filephoto" class="form-label">Photo</label>
+                <input type="file" class="form-control" name="filephoto" id="filephoto" required/>
+            </div>
+            <div class="col-md-6">
+                <label for="fileproof" class="form-label">ID Proof</label>
+                <input type="file" class="form-control" name="fileproof" id="fileproof" required/>
+            </div>
+        </div>
+        
+        <!-- Row 6: Submit and Reset Buttons -->
+        <div class="row">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary me-2" name="btnsubmit">Submit</button>
+                <button type="reset" class="btn btn-secondary" name="btncancel">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
 
 <script src="../Asset/JQ/jQuery.js"></script>
 <script>
