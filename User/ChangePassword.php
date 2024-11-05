@@ -18,9 +18,13 @@ if(isset($_POST["btnsave"]))
 		if($newpassword==$confirmpwd)
 		{
 			$insQry="update tbl_user set user_password='".$_POST["txtconfirm"]."' where user_id='".$_SESSION["userid"]."'";
-			mysql_query($insQry);
-			echo $insQry;
-			//header("location:../Guest/Login.php");
+			if(mysql_query($insQry))
+      {
+			header("location:./MyProfile.php");
+
+
+      }
+			// echo $insQry;
 		}
 		else
 		{

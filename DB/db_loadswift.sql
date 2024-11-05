@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.9
+-- version 2.11.6
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 02, 2024 at 10:44 AM
--- Server version: 5.5.20
--- PHP Version: 5.3.9
+-- Generation Time: Nov 05, 2024 at 08:13 AM
+-- Server version: 5.0.51
+-- PHP Version: 5.2.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -26,13 +25,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `tbl_admin`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_admin` (
-  `admin_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_admin` (
+  `admin_id` int(10) NOT NULL auto_increment,
   `admin_name` varchar(20) NOT NULL,
   `admin_contact` varchar(12) NOT NULL,
   `admin_email` varchar(20) NOT NULL,
   `admin_password` varchar(10) NOT NULL,
-  PRIMARY KEY (`admin_id`)
+  PRIMARY KEY  (`admin_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
@@ -49,9 +48,9 @@ INSERT INTO `tbl_admin` (`admin_id`, `admin_name`, `admin_contact`, `admin_email
 -- Table structure for table `tbl_agent`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_agent` (
-  `agent_id` int(10) NOT NULL AUTO_INCREMENT,
-  `agent_status` int(50) NOT NULL DEFAULT '0',
+CREATE TABLE `tbl_agent` (
+  `agent_id` int(10) NOT NULL auto_increment,
+  `agent_status` int(50) NOT NULL default '0',
   `agent_name` varchar(20) NOT NULL,
   `agent_gender` varchar(10) NOT NULL,
   `agent_address` varchar(50) NOT NULL,
@@ -61,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `tbl_agent` (
   `agent_idproof` varchar(200) NOT NULL,
   `agent_password` varchar(10) NOT NULL,
   `place_id` int(10) NOT NULL,
-  PRIMARY KEY (`agent_id`)
+  PRIMARY KEY  (`agent_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
@@ -79,15 +78,20 @@ INSERT INTO `tbl_agent` (`agent_id`, `agent_status`, `agent_name`, `agent_gender
 -- Table structure for table `tbl_assignorder`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_assignorder` (
-  `assignorder_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_assignorder` (
+  `assignorder_id` int(10) NOT NULL auto_increment,
   `assignorder_date` date NOT NULL,
   `userorder_id` int(10) NOT NULL,
   `agent_id` int(10) NOT NULL,
   `lorryowner_id` int(10) NOT NULL,
   `assignorder_status` varchar(50) NOT NULL,
-  PRIMARY KEY (`assignorder_id`)
+  PRIMARY KEY  (`assignorder_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `tbl_assignorder`
+--
+
 
 -- --------------------------------------------------------
 
@@ -95,11 +99,11 @@ CREATE TABLE IF NOT EXISTS `tbl_assignorder` (
 -- Table structure for table `tbl_booking`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_booking` (
-  `booking_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_booking` (
+  `booking_id` int(11) NOT NULL auto_increment,
   `booking_date` date NOT NULL,
   `user_id` int(11) NOT NULL,
-  `booking_status` int(11) NOT NULL DEFAULT '0',
+  `booking_status` int(11) NOT NULL default '0',
   `booking_amount` varchar(50) NOT NULL,
   `total_amount` varchar(20) NOT NULL,
   `place_id` int(11) NOT NULL,
@@ -108,8 +112,8 @@ CREATE TABLE IF NOT EXISTS `tbl_booking` (
   `agent_id` int(11) NOT NULL,
   `lorryowner_id` int(11) NOT NULL,
   `booking_address` varchar(100) NOT NULL,
-  PRIMARY KEY (`booking_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+  PRIMARY KEY  (`booking_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `tbl_booking`
@@ -123,7 +127,8 @@ INSERT INTO `tbl_booking` (`booking_id`, `booking_date`, `user_id`, `booking_sta
 (16, '2024-11-02', 8, 1, '50.00', '10010', 6, 199, '2024-11-29', 0, 15, 'kkppvz'),
 (17, '2024-11-02', 8, 1, '50.00', '', 0, 0, '', 0, 0, ''),
 (18, '2024-11-02', 6, 3, '30.00', '25060', 6, 500, '2024-11-04', 0, 0, 'Moolamattom'),
-(19, '2024-11-02', 6, 6, '30.00', '7730', 6, 77, '2024-11-05', 0, 16, 'Moolamattom');
+(19, '2024-11-02', 6, 6, '30.00', '7730', 6, 77, '2024-11-05', 0, 16, 'Moolamattom'),
+(20, '2024-11-05', 9, 1, '50.00', '2050', 7, 40, '2024-11-06', 0, 0, 'munnar P.O idduki');
 
 -- --------------------------------------------------------
 
@@ -131,14 +136,14 @@ INSERT INTO `tbl_booking` (`booking_id`, `booking_date`, `user_id`, `booking_sta
 -- Table structure for table `tbl_cart`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_cart` (
-  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
-  `cart_quantity` int(11) NOT NULL DEFAULT '1',
+CREATE TABLE `tbl_cart` (
+  `cart_id` int(11) NOT NULL auto_increment,
+  `cart_quantity` int(11) NOT NULL default '1',
   `booking_id` int(11) NOT NULL,
-  `cart_status` int(11) NOT NULL DEFAULT '0',
+  `cart_status` int(11) NOT NULL default '0',
   `product_id` int(11) NOT NULL,
-  PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+  PRIMARY KEY  (`cart_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `tbl_cart`
@@ -153,7 +158,8 @@ INSERT INTO `tbl_cart` (`cart_id`, `cart_quantity`, `booking_id`, `cart_status`,
 (15, 1, 16, 1, 26),
 (16, 1, 17, 1, 25),
 (17, 1, 18, 1, 26),
-(18, 1, 19, 1, 17);
+(18, 1, 19, 1, 17),
+(19, 1, 20, 1, 25);
 
 -- --------------------------------------------------------
 
@@ -161,10 +167,10 @@ INSERT INTO `tbl_cart` (`cart_id`, `cart_quantity`, `booking_id`, `cart_status`,
 -- Table structure for table `tbl_category`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_category` (
-  `category_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_category` (
+  `category_id` int(10) NOT NULL auto_increment,
   `category_name` varchar(20) NOT NULL,
-  PRIMARY KEY (`category_id`)
+  PRIMARY KEY  (`category_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
@@ -182,29 +188,29 @@ INSERT INTO `tbl_category` (`category_id`, `category_name`) VALUES
 -- Table structure for table `tbl_complaint`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_complaint` (
-  `complaint_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_complaint` (
+  `complaint_id` int(10) NOT NULL auto_increment,
   `complaint_date` date NOT NULL,
   `complaint_typeid` int(200) NOT NULL,
   `complaint_details` varchar(100) NOT NULL,
   `user_id` int(10) NOT NULL,
-  `complaint_replay` varchar(100) NOT NULL,
-  `complaint_status` varchar(50) NOT NULL,
-  `cart_id` int(11) NOT NULL,
-  PRIMARY KEY (`complaint_id`)
+  `complaint_reply` varchar(100) NOT NULL,
+  `complaint_status` int(50) NOT NULL default '0',
+  `booking_id` int(11) NOT NULL,
+  PRIMARY KEY  (`complaint_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `tbl_complaint`
 --
 
-INSERT INTO `tbl_complaint` (`complaint_id`, `complaint_date`, `complaint_typeid`, `complaint_details`, `user_id`, `complaint_replay`, `complaint_status`, `cart_id`) VALUES
-(1, '2024-11-01', 1, 'it damaged one', 8, 'good', 'Replied', 11),
-(2, '2024-11-01', 1, 'it damaged one', 8, 'bad', 'Replied', 11),
-(3, '2024-11-01', 1, 'kunji', 8, 'kanji', 'Replied', 11),
-(4, '2024-11-01', 1, 'kunji', 8, 'yes', 'Replied', 13),
-(5, '2024-11-02', 1, 'bad', 8, 'good', 'Replied', 15),
-(6, '2024-11-02', 1, 'not good', 6, 'sorry', 'Replied', 18);
+INSERT INTO `tbl_complaint` (`complaint_id`, `complaint_date`, `complaint_typeid`, `complaint_details`, `user_id`, `complaint_reply`, `complaint_status`, `booking_id`) VALUES
+(1, '2024-11-01', 1, 'it damaged one', 8, 'good', 0, 11),
+(2, '2024-11-01', 1, 'it damaged one', 8, 'bad', 0, 11),
+(3, '2024-11-01', 1, 'kunji', 8, 'kanji', 0, 11),
+(4, '2024-11-01', 1, 'kunji', 8, 'yes', 0, 13),
+(5, '2024-11-02', 1, 'bad', 8, 'good', 0, 15),
+(6, '2024-11-02', 1, 'not good', 6, 'sorry', 0, 18);
 
 -- --------------------------------------------------------
 
@@ -212,11 +218,11 @@ INSERT INTO `tbl_complaint` (`complaint_id`, `complaint_date`, `complaint_typeid
 -- Table structure for table `tbl_complainttype`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_complainttype` (
-  `complaint_typeid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_complainttype` (
+  `complaint_typeid` int(11) NOT NULL auto_increment,
   `type_name` varchar(100) NOT NULL,
-  PRIMARY KEY (`complaint_typeid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  PRIMARY KEY  (`complaint_typeid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_complainttype`
@@ -231,11 +237,11 @@ INSERT INTO `tbl_complainttype` (`complaint_typeid`, `type_name`) VALUES
 -- Table structure for table `tbl_district`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_district` (
-  `district_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_district` (
+  `district_id` int(10) NOT NULL auto_increment,
   `district_name` varchar(20) NOT NULL,
   `state_id` int(10) NOT NULL,
-  PRIMARY KEY (`district_id`)
+  PRIMARY KEY  (`district_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
@@ -256,15 +262,15 @@ INSERT INTO `tbl_district` (`district_id`, `district_name`, `state_id`) VALUES
 -- Table structure for table `tbl_feedback`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_feedback` (
-  `feedback_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_feedback` (
+  `feedback_id` int(11) NOT NULL auto_increment,
   `feedback_date` date NOT NULL,
   `feedback_content` varchar(500) NOT NULL,
   `user_id` int(11) NOT NULL,
   `seller_id` int(11) NOT NULL,
   `agent_id` int(11) NOT NULL,
   `lorryowner_id` int(11) NOT NULL,
-  PRIMARY KEY (`feedback_id`)
+  PRIMARY KEY  (`feedback_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
@@ -280,11 +286,11 @@ INSERT INTO `tbl_feedback` (`feedback_id`, `feedback_date`, `feedback_content`, 
 -- Table structure for table `tbl_grade`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_grade` (
-  `grade_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_grade` (
+  `grade_id` int(10) NOT NULL auto_increment,
   `grade_name` varchar(20) NOT NULL,
   `category_id` int(10) NOT NULL,
-  PRIMARY KEY (`grade_id`)
+  PRIMARY KEY  (`grade_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
@@ -302,8 +308,8 @@ INSERT INTO `tbl_grade` (`grade_id`, `grade_name`, `category_id`) VALUES
 -- Table structure for table `tbl_lorryowner`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_lorryowner` (
-  `lorryowner_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_lorryowner` (
+  `lorryowner_id` int(10) NOT NULL auto_increment,
   `lorryowner_name` varchar(20) NOT NULL,
   `lorryowner_gender` varchar(10) NOT NULL,
   `lorryowner_address` varchar(50) NOT NULL,
@@ -312,9 +318,9 @@ CREATE TABLE IF NOT EXISTS `tbl_lorryowner` (
   `lorryowner_photo` varchar(200) NOT NULL,
   `lorryowner_idproof` varchar(200) NOT NULL,
   `place_id` int(10) NOT NULL,
-  `lorryowner_status` varchar(50) NOT NULL DEFAULT '0',
+  `lorryowner_status` varchar(50) NOT NULL default '0',
   `lorryowner_password` varchar(10) NOT NULL,
-  PRIMARY KEY (`lorryowner_id`)
+  PRIMARY KEY  (`lorryowner_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
@@ -332,14 +338,19 @@ INSERT INTO `tbl_lorryowner` (`lorryowner_id`, `lorryowner_name`, `lorryowner_ge
 -- Table structure for table `tbl_orderpayment`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_orderpayment` (
-  `orderpayment_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_orderpayment` (
+  `orderpayment_id` int(10) NOT NULL auto_increment,
   `orderpayment_date` date NOT NULL,
   `user_id` int(10) NOT NULL,
   `order_id` int(10) NOT NULL,
   `orderpayment_status` int(50) NOT NULL,
-  PRIMARY KEY (`orderpayment_id`)
+  PRIMARY KEY  (`orderpayment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `tbl_orderpayment`
+--
+
 
 -- --------------------------------------------------------
 
@@ -347,12 +358,12 @@ CREATE TABLE IF NOT EXISTS `tbl_orderpayment` (
 -- Table structure for table `tbl_place`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_place` (
-  `place_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_place` (
+  `place_id` int(10) NOT NULL auto_increment,
   `place_name` varchar(20) NOT NULL,
   `place_pincode` int(6) NOT NULL,
   `district_id` int(10) NOT NULL,
-  PRIMARY KEY (`place_id`)
+  PRIMARY KEY  (`place_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
@@ -373,8 +384,8 @@ INSERT INTO `tbl_place` (`place_id`, `place_name`, `place_pincode`, `district_id
 -- Table structure for table `tbl_product`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_product` (
-  `product_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_product` (
+  `product_id` int(10) NOT NULL auto_increment,
   `product_name` varchar(20) NOT NULL,
   `grade_id` int(10) NOT NULL,
   `seller_id` int(10) NOT NULL,
@@ -382,9 +393,9 @@ CREATE TABLE IF NOT EXISTS `tbl_product` (
   `place_id` int(10) NOT NULL,
   `product_locationaddress` varchar(50) NOT NULL,
   `product_image` varchar(500) NOT NULL,
-  `product_status` int(11) NOT NULL DEFAULT '0',
+  `product_status` int(11) NOT NULL default '0',
   `product_price` int(11) NOT NULL,
-  PRIMARY KEY (`product_id`)
+  PRIMARY KEY  (`product_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
@@ -405,11 +416,32 @@ INSERT INTO `tbl_product` (`product_id`, `product_name`, `grade_id`, `seller_id`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_rating`
+--
+
+CREATE TABLE `tbl_rating` (
+  `rating_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rating_value` int(11) NOT NULL,
+  `rating_content` varchar(500) NOT NULL,
+  `rating_datetime` varchar(50) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY  (`rating_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_rating`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_seller`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_seller` (
-  `seller_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_seller` (
+  `seller_id` int(10) NOT NULL auto_increment,
   `seller_name` varchar(20) NOT NULL,
   `seller_gender` varchar(10) NOT NULL,
   `seller_address` varchar(50) NOT NULL,
@@ -419,9 +451,9 @@ CREATE TABLE IF NOT EXISTS `tbl_seller` (
   `seller_idproof` varchar(200) NOT NULL,
   `place_id` int(10) NOT NULL,
   `seller_password` varchar(20) NOT NULL,
-  `seller_status` int(50) NOT NULL DEFAULT '0',
+  `seller_status` int(50) NOT NULL default '0',
   `amount_km` varchar(50) NOT NULL,
-  PRIMARY KEY (`seller_id`)
+  PRIMARY KEY  (`seller_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
@@ -440,10 +472,10 @@ INSERT INTO `tbl_seller` (`seller_id`, `seller_name`, `seller_gender`, `seller_a
 -- Table structure for table `tbl_state`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_state` (
-  `state_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_state` (
+  `state_id` int(10) NOT NULL auto_increment,
   `state_name` varchar(20) NOT NULL,
-  PRIMARY KEY (`state_id`)
+  PRIMARY KEY  (`state_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -460,11 +492,11 @@ INSERT INTO `tbl_state` (`state_id`, `state_name`) VALUES
 -- Table structure for table `tbl_stock`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_stock` (
+CREATE TABLE `tbl_stock` (
   `stock_quantity` varchar(50) NOT NULL,
   `product_id` int(50) NOT NULL,
-  `stock_id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`stock_id`)
+  `stock_id` int(11) NOT NULL auto_increment,
+  PRIMARY KEY  (`stock_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -481,8 +513,8 @@ INSERT INTO `tbl_stock` (`stock_quantity`, `product_id`, `stock_id`) VALUES
 -- Table structure for table `tbl_user`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_user` (
-  `user_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_user` (
+  `user_id` int(10) NOT NULL auto_increment,
   `user_name` varchar(20) NOT NULL,
   `user_gender` varchar(10) NOT NULL,
   `user_address` varchar(30) NOT NULL,
@@ -491,10 +523,10 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `user_password` varchar(20) NOT NULL,
   `user_photo` varchar(200) NOT NULL,
   `user_idproof` varchar(200) NOT NULL,
-  `user_status` int(50) NOT NULL DEFAULT '0',
+  `user_status` int(50) NOT NULL default '0',
   `place_id` int(10) NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  PRIMARY KEY  (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `tbl_user`
@@ -504,7 +536,8 @@ INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_gender`, `user_address`, `
 (5, 'Bibin Siby', ' Male', 'Narimattathil House', '8241506034', 'bibinsiby@gmail.com', 'Bibin2356', 'premium.jpeg', 'abstract.avif', 1, 6),
 (6, 'Irin Babu', 'Female', 'Velamkuzhiyil House', '6045824152', 'irinsrababu@gmail.co', 'irin65', 'premium.jpeg', 'abstract.avif', 0, 7),
 (7, 'Devapriya s', 'Female', 'Melekudiyil House', '8281279407', 'devapriya@gmail.com', 'devu2002', 'premium.jpeg', 'abstract.avif', 2, 8),
-(8, 'user', 'Female', 'korangu veetil kunji', '6282038574', 'user@gmail.com', 'user', 'picc.jpg', 'pic.jpg', 0, 6);
+(8, 'user', 'Female', 'korangu veetil kunji', '6282038574', 'user@gmail.com', 'user', 'picc.jpg', 'pic.jpg', 0, 6),
+(9, 'User', ' Male', 'User', '9778383910', 'user@gmail.com', 'User@123', 'download.jfif', 'beijing-china-january-28-2017-260nw-627951437.webp', 0, 6);
 
 -- --------------------------------------------------------
 
@@ -512,8 +545,8 @@ INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_gender`, `user_address`, `
 -- Table structure for table `tbl_userorder`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_userorder` (
-  `userorder_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_userorder` (
+  `userorder_id` int(10) NOT NULL auto_increment,
   `product_id` int(10) NOT NULL,
   `userorder_quantity` varchar(10) NOT NULL,
   `user_id` int(10) NOT NULL,
@@ -524,9 +557,10 @@ CREATE TABLE IF NOT EXISTS `tbl_userorder` (
   `userorder_status` int(50) NOT NULL,
   `userorder_rate` int(10) NOT NULL,
   `userorder_total amount` int(20) NOT NULL,
-  PRIMARY KEY (`userorder_id`)
+  PRIMARY KEY  (`userorder_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Dumping data for table `tbl_userorder`
+--
+

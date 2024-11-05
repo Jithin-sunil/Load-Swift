@@ -26,7 +26,7 @@
         <link href="../Asset/Templates/Main/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="../Asset/Templates/Main/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         <!-- Customized Bootstrap Stylesheet -->
         <link href="../Asset/Templates/Main/css/bootstrap.min.css" rel="stylesheet">
 
@@ -231,12 +231,13 @@
         <nav class="container">
             <div class="logo">Load Shift</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="../Load Swift/Guest/Login.php">Sign In</a></li>
-                <li><a href="../Load Swift/Guest/Seller.php">Seller</a></li>
-                <li><a href="../Load Swift/Guest/Agent.php">Agent</a></li>
-                <li><a href="../Load Swift/Guest/Lorry Owner.php">Lorry Owner</a></li>
-                <li><a href="../Load Swift/Guest/User.php">Customer</a></li>
+                <li><a href="HomePage.php"><i class="fa-solid fa-house"></i></a></li>
+                <li><a href="MyOrder.php">MyOrders</a></li>
+                <li><a href="MyComplaints.php">MyComplaints</a></li>
+                <li><a href="MyProfile.php"><i class="fa-solid fa-user"></i></a></li>
+                <li><a href="SearchProduct.php"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                <li><a href="MyCart.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><a href="../Logout.php"><i class="fa-solid fa-right-from-bracket"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -247,7 +248,7 @@
                 <h1>LOAD SWIFT</h1>
                 <p>Exporting services for vegetable,fruits,grains and living things</p>
                 
-                <a href="../Load Swift/Guest/Login.php" class="btn">Get Started</a>
+                <a href="" class="btn">Get Started</a>
             </div>
         </section>
 

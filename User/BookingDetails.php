@@ -14,8 +14,6 @@
       </script>
       <?php
     }
-
-		//echo $inqry;
 	}
 ?>
 
