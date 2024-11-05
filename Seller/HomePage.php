@@ -234,11 +234,11 @@
             <div class="logo">Load Shift</div>
             <ul class="nav-links">
                 <li><a href="HomePage.php"><i class="fa-solid fa-house"></i></a></li>
+                <li><a href="ProductEntry.php">Product</a></li>
                 <li><a href="Orders.php">View Orders</a></li>
-                <li><a href="Complaints.php">Complaints</a></li>
+                <li><a href="Complaint.php">Complaints</a></li>
+                <li><a href="Feedback.php">Feedback</a></li>
                 <li><a href="MyProfile.php"><i class="fa-solid fa-user"></i></a></li>
-                <li><a href="SearchProduct.php"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-                <li><a href="MyCart.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <li><a href="../Logout.php"><i class="fa-solid fa-right-from-bracket"></i></a></li>
             </ul>
         </nav>
@@ -250,7 +250,7 @@
                 <h1>LOAD SWIFT</h1>
                 <p>Exporting services for vegetable,fruits,grains and living things</p>
                 
-                <a href="../Load Swift/Guest/Login.php" class="btn">Get Started</a>
+                <!-- <a href="../Load Swift/Guest/Login.php" class="btn">Get Started</a> -->
             </div>
         </section>
 

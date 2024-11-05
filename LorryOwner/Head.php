@@ -20,6 +20,9 @@
 
         <!-- Icon Font Stylesheet -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
         <!-- libraries Stylesheet -->
@@ -228,17 +231,16 @@
 </head>
 <body>
     <header>
-        <nav class="container">
+    <nav class="container">
             <div class="logo">Load Shift</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="../Load Swift/Guest/Login.php">Sign In</a></li>
-                <li><a href="../Load Swift/Guest/Seller.php">Seller</a></li>
-                <li><a href="../Load Swift/Guest/Agent.php">Agent</a></li>
-                <li><a href="../Load Swift/Guest/Lorry Owner.php">Lorry Owner</a></li>
-                <li><a href="../Load Swift/Guest/User.php">Customer</a></li>
+                <li><a href="HomePage.php"><i class="fa-solid fa-house"></i></a></li>
+                <li><a href="ViewOrders.php">View Orders</a></li>
+                <li><a href="Complaint.php">Complaints</a></li>
+                <li><a href="Feedback.php">Feedback</a></li>
+                <li><a href="MyProfile.php"><i class="fa-solid fa-user"></i></a></li>
+                <li><a href="../Logout.php"><i class="fa-solid fa-right-from-bracket"></i></a></li>
             </ul>
         </nav>
     </header>
-
     <main>
